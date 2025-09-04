@@ -152,6 +152,11 @@
                 <div class="text-lg text-white/80 font-medium">
                     🌟 Online Multiplayer • Echtzeit • Interaktiv 🌟
                 </div>
+                <div class="text-center mt-8">
+                    <button onclick="showHighScores()" class="bg-yellow-600/80 hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 backdrop-blur-sm border border-yellow-400/30 neon-glow">
+                        🏆 Bestenliste ansehen
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -175,6 +180,11 @@
                             <div class="text-lg opacity-90">Spiele mit Freunden online</div>
                             <div class="text-sm mt-3 opacity-75">🌐 Echtzeit Wettkampf</div>
                         </div>
+                    </button>
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="showHighScores()" class="bg-yellow-600/80 hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 backdrop-blur-sm border border-yellow-400/30 neon-glow">
+                        🏆 Bestenliste ansehen
                     </button>
                 </div>
             </div>
@@ -207,6 +217,16 @@
                     </button>
                     <button onclick="backToModeSelection()" class="bg-gray-600/80 hover:bg-gray-500 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 backdrop-blur-sm border border-gray-400/30">
                         ⬅️ Zurück
+                    </button>
+                </div>
+                <div class="text-center mt-6">
+                    <button onclick="showHighScores()" class="bg-yellow-600/80 hover:bg-yellow-500 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 backdrop-blur-sm border border-yellow-400/30">
+                        🏆 Bestenliste ansehen
+                    </button>
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="showHighScores()" class="bg-yellow-600/80 hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 backdrop-blur-sm border border-yellow-400/30 neon-glow">
+                        🏆 Bestenliste ansehen
                     </button>
                 </div>
             </div>
@@ -263,6 +283,11 @@
                         🎯 Schnell antworten = Mehr Punkte!
                     </div>
                 </div>
+                <div class="text-center mt-8">
+                    <button onclick="showHighScores()" class="bg-yellow-600/80 hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 backdrop-blur-sm border border-yellow-400/30 neon-glow">
+                        🏆 Bestenliste ansehen
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -302,6 +327,11 @@
                         🏆 Bestenliste
                     </button>
                 </div>
+                <div class="text-center mt-8">
+                    <button onclick="showHighScores()" class="bg-yellow-600/80 hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 backdrop-blur-sm border border-yellow-400/30 neon-glow">
+                        🏆 Bestenliste ansehen
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -314,9 +344,19 @@
                     <p class="text-white/80">Die besten Patrick Stanke Quiz Spieler</p>
                 </div>
                 <div id="highScoresList" class="space-y-3 mb-8"></div>
-                <div class="text-center">
+                <div class="text-center space-y-4">
                     <button onclick="closeHighScores()" class="bg-gray-600/80 hover:bg-gray-500 text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 backdrop-blur-sm border border-gray-400/30">
                         ✕ Schließen
+                    </button>
+                    <div>
+                        <button onclick="clearHighScores()" class="bg-red-600/80 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-xl transition-all duration-300 backdrop-blur-sm border border-red-400/30 text-sm">
+                            🗑️ Bestenliste löschen
+                        </button>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="showHighScores()" class="bg-yellow-600/80 hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 backdrop-blur-sm border border-yellow-400/30 neon-glow">
+                        🏆 Bestenliste ansehen
                     </button>
                 </div>
             </div>
@@ -869,6 +909,19 @@
             document.getElementById('highScoresModal').classList.add('hidden');
         }
 
+        function clearHighScores() {
+            const password = prompt('🔐 Passwort eingeben um die Bestenliste zu löschen:');
+            if (password === 'Patrick') {
+                if (confirm('⚠️ Bist du sicher, dass du die gesamte Bestenliste löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden!')) {
+                    localStorage.removeItem('patrickStankeQuizHighScores');
+                    alert('✅ Bestenliste wurde erfolgreich gelöscht!');
+                    showHighScores(); // Refresh the display
+                }
+            } else if (password !== null) {
+                alert('❌ Falsches Passwort!');
+            }
+        }
+
         function checkForHighScore() {
             if (gameMode === 'single') {
                 const highScores = getHighScores();
@@ -909,5 +962,5 @@
             `;
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979d38f890a616f0',t:'MTc1Njk4NjEzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979d415d07ea16f0',t:'MTc1Njk4NjQ4MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
